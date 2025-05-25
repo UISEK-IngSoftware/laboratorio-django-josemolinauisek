@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokedex UISEK</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+            color: #333;
+            padding: 110px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 3rem;
+            color: #2f3542;
+        }
+
+        .pokemon-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 2000px;
+            margin: auto;
+        }
+
+        .pokemon-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 50px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pokemon-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .pokemon-card img {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .pokemon-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #092a3d;
+            text-transform: capitalize;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pokémons Iniciales</h1>
+    <div class="pokemon-container">
+        {% for p in pokemons %}
+            <a href="{% url 'detalle_pokemon' p.id %}" class="pokemon-card">
+                <img src="{% static p.imagen %}" alt="{{ p.nombre }}">
+                <div class="pokemon-name">{{ p.nombre }}</div>
+            </a>
+        {% empty %}
+            <p>No hay pokémons para mostrar.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

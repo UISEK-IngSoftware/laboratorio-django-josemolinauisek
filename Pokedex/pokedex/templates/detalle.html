@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pokemon.nombre }}</title>
+    <style>
+        .detalle-container {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .detalle-container img {
+            width: 250px;
+            height: 250px;
+        }
+
+        .detalle-info {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="detalle-container">
+        <h1>{{ pokemon.nombre }}</h1>
+        <img src="{% static pokemon.imagen %}" alt="{{ pokemon.nombre }}">
+        <div class="detalle-info">
+            <p><strong>Tipo:</strong> {{ pokemon.tipo }}</p>
+            <p><strong>Peso:</strong> {{ pokemon.peso }} kg</p>
+            <p><strong>Altura:</strong> {{ pokemon.altura }} m</p>
+            <p><strong>Descripción:</strong> {{ pokemon.descripcion }}</p>
+        </div>
+        <a href="{% url 'lista_pokemons' %}">← Volver a la lista</a>
+    </div>
+</body>
+</html>
