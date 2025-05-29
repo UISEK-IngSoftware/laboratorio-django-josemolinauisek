@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pokemon.nombre }}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+            color: #333;
+            padding: 110px 20px 40px 20px;
+            text-align: center;
+        }
+
+     
+        .portada {
+            max-width: 50%;
+            height: auto;
+            display: block;
+            margin: 0 auto 40px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: #2f3542;
+            text-align: center;
+        }
+
+        .detalle-container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .detalle-container img {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .detalle-info p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #092a3d;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0d6efd; 
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <img src="{% static 'portada.png' %}" alt="Portada" class="portada">
+
+    <div class="detalle-container">
+        <h1>{{ pokemon.nombre }}</h1>
+        <img src="{% static pokemon.imagen %}" alt="{{ pokemon.nombre }}">
+        <div class="detalle-info">
+            <p><strong>Tipo:</strong> {{ pokemon.tipo }}</p>
+            <p><strong>Peso:</strong> {{ pokemon.peso }} kg</p>
+            <p><strong>Altura:</strong> {{ pokemon.altura }} m</p>
+            <p><strong>Descripción:</strong> {{ pokemon.descripcion }}</p>
+        </div>
+        <a href="{% url 'lista_pokemons' %}">← Volver a la lista</a>
+    </div>
+</body>
+</html>
